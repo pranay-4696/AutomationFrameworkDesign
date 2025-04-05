@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="Orange Hrm Sanity Suite" parallel="methods" thread-count="2" data-provider-thread-count="1">
+    <listeners>
+        <listener class-name="web.listeners.WebPortalTestListeners"/>
+    </listeners>
+    <test name="Orange Hrm Web Tests">
+        <classes>
+            <class name="web.testcases.orangehrm.OrangeHrmHomePageTests"/>
+        </classes>
+    </test>
+</suite>
