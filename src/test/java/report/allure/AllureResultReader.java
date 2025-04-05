@@ -1,13 +1,14 @@
-package in.zeta.tech.lib.report.allure;
+package report.allure;
 
-import in.zeta.tech.Constants.TestDataFilePath;
-import in.zeta.tech.lib.CommonUtilities;
-import in.zeta.tech.lib.JsonHelper;
+import commons.CommonUtilities;
+import api.utils.JsonHelper;
 import lombok.SneakyThrows;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -21,8 +22,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static in.zeta.tech.Constants.TestDataFilePath.*;
-import static in.zeta.tech.Constants.athena.TpConstants.*;
+import static api.constants.TestDataFilePath.*;
 
 public class AllureResultReader {
 
@@ -72,22 +72,8 @@ public class AllureResultReader {
         FileWriter writer = new FileWriter(catJsonRuntime);
         writer.write(buffer.toString());
         writer.flush();
-    }
-
-    @SneakyThrows
-    public void createCategoriesJsonFileAndOverride() {
-        // STEP1: EXTRACT ALL ALLURE ERROR/FAILURE MESSAGE
-        List<String> errorMessages = extractUniqueFailureMessages();
-        //STEP2: EXTRACT ERROR/FAILURE CATEGORY
-        List<String> uniqueFailureCategories = errorMessages.stream().map(this::extractFailureCategory)
-                .distinct().filter(category -> !category.isEmpty()).collect(Collectors.toList());
-        //STEP3: GENERATE FAILURE CATEGORY JSON
-        String json = generateCategoriesJsonFromFailureCategories(uniqueFailureCategories);
-        //STEP4: UPDATE CATEGORIES.JSON FILE IN ALLURE RESULTS
-        File catJsonRuntime = new File(Paths.get(ALLURE_RESULT) + "/categories.json");
-        FileWriter writer = new FileWriter(catJsonRuntime);
-        writer.write(json);
-        writer.flush();
+        writer.close();
+        sc.close();
     }
 
     private List<String> extractUniqueFailureMessages() {
@@ -119,23 +105,7 @@ public class AllureResultReader {
             } else {
                 return failureMsg;
             }
-
         }
         return "";
     }
-
-
-
-    private String generateCategoriesJsonFromFailureCategories(List<String> uniqueFailureCategories) throws Exception {
-        JsonHelper jsonHelper = new JsonHelper();
-        List<ErrorMessage> errorMessages = jsonHelper.getObjectsFromJsonFile(TestDataFilePath.ATHENA_REPORT_CATEGORIES_JSON, ErrorMessage.class);
-        uniqueFailureCategories.forEach(e -> {
-            ErrorMessage msg = new ErrorMessage();
-            msg.setName(StringUtils.capitalize(e));
-            msg.setMessageRegex(".*" + e + ".*");
-            errorMessages.add(msg);
-        });
-        return jsonHelper.convertObjectToJsonString(errorMessages);
-    }
-
 }
