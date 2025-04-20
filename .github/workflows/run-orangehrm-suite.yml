@@ -16,16 +16,12 @@ jobs:
       - name: 🛒 Checkout Repository
         uses: actions/checkout@v4
 
-      - name: ☕ Set up Java
+      - name: ☕ Set up Java & Enable Maven Caching
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '17'
-
-      - name: ⚙️ Set up Maven
-        uses: s4u/setup-maven-action@v1.13.0
-        with:
-          maven-version: '3.9.6'
+          cache: 'maven'  # ✅ This enables Maven dependency caching
 
       - name: 📦 Build & Run Suite
         run: mvn clean test -DsuiteXmlFile=${{ github.event.inputs.suite_path }}
