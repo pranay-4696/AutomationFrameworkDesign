@@ -3,6 +3,7 @@
 <suite name="Orange Hrm Sanity Suite" parallel="methods" thread-count="2" data-provider-thread-count="1">
     <listeners>
         <listener class-name="web.listeners.WebPortalTestListeners"/>
+        <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
     </listeners>
     <test name="Orange Hrm Web Tests">
         <classes>

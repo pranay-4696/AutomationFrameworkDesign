@@ -28,6 +28,8 @@ jobs:
 
       - name: 📦 Build & Run Suite
         run: mvn clean test -DsuiteXmlFile=${{ github.event.inputs.suite_path }}
+        env:
+          JAVA_TOOL_OPTIONS: "-Dallure.results.directory=allure-results"
 
       - name: 🧬 Install Allure CLI
         run: |

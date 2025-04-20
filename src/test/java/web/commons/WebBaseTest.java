@@ -51,6 +51,5 @@ public abstract class WebBaseTest {
             playwright.remove();
             log.info("Playwright has been closed.");
         }
-        log.info("Enabling OTP in LSG environment started...");
     }
 }
