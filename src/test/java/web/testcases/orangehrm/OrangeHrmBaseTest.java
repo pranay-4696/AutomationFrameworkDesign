@@ -17,7 +17,7 @@ public class OrangeHrmBaseTest extends WebBaseTest {
 
     @BeforeMethod(alwaysRun = true)
     public void setUpOrangeHrmPortal(Method method) {
-        log.info("Finance Center Thread id in BeforeMethod for the test method : {} is {}.", method.getName(), Thread.currentThread().getId());
+        log.info("Orange Hrm Thread id in BeforeMethod for the test method : {} is {}.", method.getName(), Thread.currentThread().getId());
         String emailId = WebConstants.ORANGE_HRM_EMAIL_ID;
         String password = WebConstants.ORANGE_HRM_PASSWORD;
         ORANGE_HRM_PORTAL.set(new OrangeHrmPortal(page.get()));

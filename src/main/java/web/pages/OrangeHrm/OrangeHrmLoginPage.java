@@ -12,14 +12,14 @@ public class OrangeHrmLoginPage extends WebBasePage {
     }
 
     public void enterUsername(String username) {
-        String userNameSelector = "input[placeholder='Username']";
+        String userNameSelector = "input[placeholder='username']";
         waitForElement(userNameSelector);
         Locator userNameLocator = locators.getPageLocator(userNameSelector);
         fillText(userNameLocator, username);
     }
 
     public void enterPassword(String password) {
-        String passwordSelector = "input[placeholder='Password']";
+        String passwordSelector = "input[placeholder='password']";
         waitForElement(passwordSelector);
         Locator userNameLocator = locators.getPageLocator(passwordSelector);
         fillText(userNameLocator, password);
