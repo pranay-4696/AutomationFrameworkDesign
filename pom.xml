@@ -2,6 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
@@ -9,28 +10,28 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>11</maven.compiler.source> <!-- Java 11 source -->
+        <maven.compiler.target>11</maven.compiler.target> <!-- Java 11 target -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <build>
         <plugins>
-            <!-- Allure Plugin -->
+            <!-- Allure Plugin: Generates Allure results and handles reporting -->
             <plugin>
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>
                 <version>2.11.2</version>
             </plugin>
 
-            <!-- Surefire Plugin for TestNG -->
+            <!-- Surefire Plugin: Required for TestNG or JUnit execution -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.2</version>
                 <configuration>
                     <systemPropertyVariables>
-                        <allure.results.directory>allure-results</allure.results.directory>
+                        <allure.results.directory>allure-results</allure.results.directory> <!-- Directory for storing Allure results -->
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
@@ -39,14 +40,14 @@
 
     <dependencies>
 
-        <!-- Playwright Dependency -->
+        <!-- Playwright: For browser automation testing -->
         <dependency>
             <groupId>com.microsoft.playwright</groupId>
             <artifactId>playwright</artifactId>
             <version>1.48.0</version>
         </dependency>
 
-        <!-- TestNG Dependency -->
+        <!-- TestNG: Primary test framework -->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
@@ -54,85 +55,85 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Lombok Dependency -->
+        <!-- Lombok: Reduces boilerplate code for models and logging -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.30</version>
-            <scope>provided</scope>
+            <version>1.18.22</version>
+            <scope>provided</scope> <!-- No runtime dependency needed -->
         </dependency>
 
-        <!-- Log4j Core -->
+        <!-- Log4j Core: Logging implementation -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
             <version>2.18.0</version>
         </dependency>
 
-        <!-- Log4j API -->
+        <!-- Log4j API: Logging API used in conjunction with Log4j Core -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>
             <version>2.18.0</version>
         </dependency>
 
-        <!-- Allure Java Commons -->
+        <!-- Allure Java Commons: Required for custom logging to Allure -->
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-java-commons</artifactId>
             <version>2.17.3</version>
         </dependency>
 
-        <!-- Allure TestNG Integration -->
+        <!-- Allure TestNG Integration: Enables @Step, @Attachment for TestNG -->
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>
             <version>2.25.0</version>
         </dependency>
 
-        <!-- Allure JUnit5 Integration (optional) -->
+        <!-- Optional: Allure JUnit5 (not needed if only using TestNG) -->
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-junit5</artifactId>
             <version>2.17.3</version>
         </dependency>
 
-        <!-- Commons IO -->
+        <!-- Apache Commons IO: File handling utilities -->
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>2.11.0</version>
         </dependency>
 
-        <!-- Commons Lang3 -->
+        <!-- Apache Commons Lang3: Utility functions for String, Number, etc. -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.12.0</version>
         </dependency>
 
-        <!-- Jackson Databind -->
+        <!-- Jackson Core: JSON serialization/deserialization -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>2.15.0</version>
         </dependency>
 
-        <!-- Jackson Annotations -->
+        <!-- Jackson Annotations: Required for Jackson POJOs -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
             <version>2.15.0</version>
         </dependency>
 
-        <!-- Jackson JSR310 -->
+        <!-- Jackson JSR310: Java 8 Date/Time (LocalDate, etc.) support -->
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
             <version>2.15.0</version>
         </dependency>
 
-        <!-- Rest Assured (for API tests) -->
+        <!-- Rest Assured: For API testing -->
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
@@ -140,25 +141,34 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- JSON Dependency -->
+        <!-- JSON.org: Lightweight JSON parsing (used with some APIs) -->
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
             <version>20210307</version>
         </dependency>
 
-        <!-- SLF4J API -->
+        <!-- SLF4J API: Logging facade (used by some tools/libs internally) -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>1.7.36</version>
         </dependency>
 
-        <!-- SLF4J Binding for Logback -->
+        <!-- JUnit: Optional if using any JUnit tests (mostly TestNG used here) -->
         <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>1.2.11</version>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Rest Assured: JSONPath support for parsing response JSON -->
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>json-path</artifactId>
+            <version>5.4.0</version>
+            <scope>test</scope>
         </dependency>
 
     </dependencies>

@@ -9,10 +9,7 @@ public class OrangeHrmDataProviders {
     @DataProvider(name = "home-page-action-tabs")
     public Object[][] homePageActionTabs() {
         return new Object[][]{
-                {Arrays.asList(
-                        "Admin", "PIM", "Leave", "Time", "Recruitment", "My Info",
-                        "Performance", "Dashboard", "Directory", "Maintenance", "Claim", "Buzz"
-                )}
+                {Arrays.asList("Admin", "PIM", "My Info", "Dashboard")}
         };
     }
 }

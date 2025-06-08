@@ -1,4 +1,4 @@
-name: Run OrangeHRM Suite
+name: Run Automation Suite
 
 on:
   workflow_dispatch:
@@ -6,7 +6,20 @@ on:
       suite_path:
         description: 'Path to the TestNG suite XML file'
         required: true
-        default: 'testsuites/OrangeHrm/OrangeHrmSanity.xml'
+        default: 'testsuites/web/OrangeHrm/OrangeHrmSanity.xml'
+        type: choice
+        options:
+          - testsuites/web/OrangeHrm/OrangeHrmSanity.xml
+          - testsuites/api/ReqRes/ReqResTests.xml
+      environment:                 # Implement it in next iteration
+        description: 'Test Environment'
+        required: true
+        default: 'preprod'
+        type: choice
+        options:
+          - preprod
+          - uat
+          - prod
 
 jobs:
   run-tests:

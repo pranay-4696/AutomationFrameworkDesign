@@ -15,4 +15,9 @@ public class OrangeHrmHomePage extends WebBasePage {
         waitForElement(actionTabsSelector);
         return locators.getPageLocator(actionTabsSelector).allInnerTexts();
     }
+
+    public String getUrl() {
+        waitForElement("header");
+        return webBasePage.url();
+    }
 }

@@ -7,7 +7,7 @@ public class WebAppConfigLoader {
 
     private final Properties PROPERTIES;
     private static WebAppConfigLoader instance;
-    private static final String WEB_PORTAL_PROPERTIES_FILE = "./src/main/resources/webapp.properties";
+    private static final String WEB_PORTAL_PROPERTIES_FILE = "./src/test/resources/webapp.properties";
 
     private WebAppConfigLoader() {
         PROPERTIES = WebPropertyUtils.loadProperties(WEB_PORTAL_PROPERTIES_FILE);

@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="ReqRes Test Suite" parallel="methods" thread-count="2" data-provider-thread-count="1">
+    <listeners>
+        <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
+    </listeners>
+    <test name="ReqRes Test API Tests">
+        <classes>
+            <class name="api.testcases.reqres.ReqResTest"/>
+        </classes>
+    </test>
+</suite>
